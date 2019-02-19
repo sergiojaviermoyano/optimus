@@ -20,7 +20,7 @@
 
         <div class="info-box-content">
           <span class="info-box-text">Agregar</span>
-          <span class="info-box-number">Venta</span>
+          <span class="info-box-number">Venta</span> 
         </div>
       </div>
     </div>
