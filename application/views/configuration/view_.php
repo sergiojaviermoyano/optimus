@@ -67,6 +67,24 @@
   </div><br>
 
   <div class="row">
+    <div class="col-xs-4">
+        <label style="margin-top: 7px;">Usuarios: </label>
+      </div>
+    <div class="col-xs-5">
+        <input type="number" class="form-control" id="usuarios" value="<?php echo $data['conf']['usuarios'];?>"  >
+      </div>
+  </div><br>
+
+  <div class="row">
+    <div class="col-xs-4">
+        <label style="margin-top: 7px;">Vencimiento: </label>
+      </div>
+    <div class="col-xs-5">
+        <input type="date" class="form-control" id="vencimiento" value="<?php echo date('Y-m-d',strtotime($data['conf']['vencimiento'])); ?>"  >
+      </div>
+  </div><br>
+
+  <div class="row">
     <div class="col-xs-6">
         <button type="submit" id="btnAceptar" class="btn btn-success pull-right"> Aceptar </button>
     </div>
@@ -101,7 +119,9 @@ $('#btnAceptar').click(function(){
                     dato1:     $('#dato1').val(),
                     dato2:     $('#dato2').val(),
                     dato3:     $('#dato3').val(),
-                    dias:     $('#validezpresupuesto').val()
+                    dias:     $('#validezpresupuesto').val(),
+                    users:    $('#usuarios').val(), 
+                    vencimiento: $('#vencimiento').val()
                   },
         url: 'index.php/configuration/seConfiguration',
         success: function(result){

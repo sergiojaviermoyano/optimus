@@ -76,8 +76,8 @@
                     <strong class="text-green"><h1 id="totalSale">0,00</h1></strong>
                   </div>
                   <div style="text-align: right; padding: 5px;">
-                    <button type="button" class="btn btn-warning" style="float: left" id="btnServicePresupuesto">Presupuesto</button>
-                    <button type="button" class="btn btn-primary" id="btnServiceEfectivo">Efectivo</button>
+                    <!-- <button type="button" class="btn btn-warning" style="float: left" id="btnServicePresupuesto">Presupuesto</button>
+                    <button type="button" class="btn btn-primary" id="btnServiceEfectivo">Efectivo</button> -->
                     <button type="button" class="btn btn-success" id="btnServiceBuy">Cobrar</button>
                   </div>
               </div>
@@ -105,7 +105,7 @@
 				                    <input type="text" class="form-control" id="lblProducto">
 				                </div>
 				                <div class="col-xs-2">
-				                    <input type="text" class="form-control" placeholder="Cantidad" id="prodCant" value="1">
+				                    <input type="number" class="form-control" placeholder="Cantidad" id="prodCant" value="1">
 				                </div>
                         <div class="col-xs-2">
 				                    <label style="margin-top: 7px" id="prodPrecio" class="pull-right">$0,00 </label>
@@ -205,94 +205,6 @@
   </div>
 </div>
 
-<!-- Modal Medios de Pago -->
-<div class="modal fade" id="modalMedios" tabindex="3000" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title"><span> <i class="fa fa-fw fa-money" style="color: #00a65a;"> </i> </span> Medios de Pago</h4>
-      </div>
-      <div class="modal-body" id="modalBodyMedios">
-          <table style="width:100%; border-collapse:separate; border-spacing:0 5px;">
-            <!-- Efectivo -->
-            <tr>
-              <td style="width:60%; text-align: right;">Efectivo</td>
-              <td style="width:1%; padding-left:5px; padding-right:5px;">$</td>
-              <td><input type="text" class="form-control calcula" id="efectivo" value="" ></td>
-            </tr>
-            <!-- Visa -->
-            <tr>
-              <td style="width:60%; text-align: right;">Visa</td>
-              <td style="width:1%; padding-left:5px; padding-right:5px;">$</td>
-              <td><input type="text" class="form-control calcula" id="visa" value="" ></td>
-            </tr>
-            <!-- MasterCard -->
-            <tr>
-              <td style="width:60%; text-align: right;">MasterCard</td>
-              <td style="width:1%; padding-left:5px; padding-right:5px;">$</td>
-              <td><input type="text" class="form-control calcula" id="mastercard" value="" ></td>
-            </tr>
-            <!-- Nevada -->
-            <tr>
-              <td style="width:60%; text-align: right;">Nevada</td>
-              <td style="width:1%; padding-left:5px; padding-right:5px;">$</td>
-              <td><input type="text" class="form-control calcula" id="nevada" value="" ></td>
-            </tr>
-            <!-- Data -->
-            <tr>
-              <td style="width:60%; text-align: right;">Data</td>
-              <td style="width:1%; padding-left:5px; padding-right:5px;">$</td>
-              <td><input type="text" class="form-control calcula" id="data" value="" ></td>
-            </tr>
-            <!-- Cuenta Corriente -->
-            <tr>
-              <td style="width:60%; text-align: right;">Cuenta Corriente</td>
-              <td style="width:1%; padding-left:5px; padding-right:5px;">$</td>
-              <td><input type="text" class="form-control calcula" id="cuentacorriente" value="" ></td>
-            </tr>
-            <!-- Credito Argentino -->
-            <tr>
-              <td style="width:60%; text-align: right;">Crédito Argentino</td>
-              <td style="width:1%; padding-left:5px; padding-right:5px;">$</td>
-              <td><input type="text" class="form-control calcula" id="creditoargentino" value="" ></td>
-            </tr>
-          </table>
-          <hr>
-          <table style="width:100%; ">
-            <!-- Total -->
-            <tr>
-              <td style="width:60%; text-align: right; padding-top: 7px;">Total</td>
-              <td style="width:1%; padding-left:5px; padding-right:5px; padding-top: 7px;">$</td>
-              <td style="text-align: right;"><strong class="text-green"><h1 style="margin-top:1px; margin-buttom: 1px;" id="totalSaleMedios">0,00</h1></strong></td>
-            </tr>
-            <!-- Sus Pagos -->
-            <tr>
-              <td style="width:60%; text-align: right; padding-top: 7px;">Sus Pagos (-)</td>
-              <td style="width:1%; padding-left:5px; padding-right:5px; padding-top: 7px;">$</td>
-              <td style="text-align: right;"><strong class="text-blue"><h1 style="margin-top:1px; margin-buttom: 1px;" id="totalPagosMedios">0,00</h1></strong></td>
-            </tr>
-            <!-- Descuento -->
-            <tr>
-              <td style="width:60%; text-align: right;">Descuento (-)</td>
-              <td style="width:1%; padding-left:5px; padding-right:5px;">$</td>
-              <td><input type="text" class="form-control calcula" id="descuento" value="" ></td>
-            </tr>
-            <!-- Saldo -->
-            <tr>
-              <td style="width:60%; text-align: right; padding-top: 7px;">Saldo</td>
-              <td style="width:1%; padding-left:5px; padding-right:5px; padding-top: 7px;">$</td>
-              <td style="text-align: right;"><strong class="text-red"><h1 style="margin-top:1px; margin-buttom: 1px;" id="totalSaldoMedios">0,00</h1></strong></td>
-            </tr>
-          </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" id="btnPago">Aceptar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Modal Cliente -->
 <div class="modal fade" id="modalCli" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -315,7 +227,7 @@
 <script>
 $("#artMprecio").maskMoney({allowNegative: false, thousands:'', decimal:'.'});
 $("#artMcantidad").maskMoney({allowNegative: false, thousands:'', decimal:'.'});
-$("#prodCant").maskMoney({allowNegative: false, thousands:'', decimal:','});
+//$("#prodCant").maskMoney({allowNegative: false, thousands:'', decimal:','});
 $(".select2").select2();
 
 setTimeout("$('#venId').select2('open');",800);
@@ -420,6 +332,7 @@ function AgregaraOrden(){
                         html+= '<td style="text-align: center; cursor: pointer;" onclick="delete_('+rowY+')"><i class="fa fa-fw fa-close" style="color: #dd4b39"></i></td>';
                         html+= '<td>'+result.article.artBarCode+'</td>';
                         html+= '<td>'+result.article.artDescription+'</td>';
+                        debugger;
                         html+= '<td style="text-align: right">'+parseFloat($('#prodCant').val()).toFixed(2)+'</td>';
                         html+= '<td style="text-align: right">'+pVenta+'</td>';
                         html+= '<td style="text-align: right">'+parseFloat(pVenta * parseFloat($('#prodCant').val())).toFixed(2)+'</td>';
@@ -452,57 +365,10 @@ $('#btnServiceBuy').click(function(){
     return false;
   var importeVenta = parseFloat($('#totalSale').html());
   if(importeVenta > 0){
-    //Clean medios
-    if($('#cliId').val() == '1'){
-      //Consumidor final
-      $('#cuentacorriente').prop("disabled", true);
-    } else {
-      $('#cuentacorriente').prop("disabled", false);
-    }
-    $('#efectivo').val('');$('#efectivo').maskMoney({allowNegative: false, thousands:'.', decimal:','});
-    $('#visa').val('');$('#visa').maskMoney({allowNegative: false, thousands:'.', decimal:','});
-    $('#mastercard').val('');$('#mastercard').maskMoney({allowNegative: false, thousands:'.', decimal:','});
-    $('#nevada').val('');$('#nevada').maskMoney({allowNegative: false, thousands:'.', decimal:','});
-    $('#data').val('');$('#data').maskMoney({allowNegative: false, thousands:'.', decimal:','});
-    $('#cuentacorriente').val('');$('#cuentacorriente').maskMoney({allowNegative: false, thousands:'.', decimal:','});
-    $('#creditoargentino').val('');$('#creditoargentino').maskMoney({allowNegative: false, thousands:'.', decimal:','});
-    $('#descuento').val('');$('#descuento').maskMoney({allowNegative: false, thousands:'.', decimal:','});
-    $('#totalSaleMedios').html(importeVenta.toFixed(2));
-    $('#modalMedios').modal('show');
-    CalcularMediosDePago();
-	  setTimeout("$('#efectivo').focus()",1000);
+    cobrarMedios(null, importeVenta);
   }
 });
 
-function SumarPagos(){
-  var efectivo = parseFloat($('#efectivo').val() == '' ? 0 : ($('#efectivo').val().replace('.','')).replace(',','.'));
-  var visa = parseFloat($('#visa').val() == '' ? 0 : ($('#visa').val().replace('.','')).replace(',','.'));
-  var mastercard = parseFloat($('#mastercard').val() == '' ? 0 : ($('#mastercard').val().replace('.','')).replace(',','.'));
-  var nevada = parseFloat($('#nevada').val() == '' ? 0 : ($('#nevada').val().replace('.','')).replace(',','.'));
-  var data = parseFloat($('#data').val() == '' ? 0 : ($('#data').val().replace('.','')).replace(',','.'));
-  var cuentacorriente = parseFloat($('#cuentacorriente').val() == '' ? 0 : ($('#cuentacorriente').val().replace('.','')).replace(',','.'));
-  var creditoargentino = parseFloat($('#creditoargentino').val() == '' ? 0 : ($('#creditoargentino').val().replace('.','')).replace(',','.'));
-
-  $('#totalPagosMedios').html(parseFloat(efectivo + visa + mastercard + nevada + data + cuentacorriente + creditoargentino).toFixed(2));
-}
-
-function CalcularMediosDePago(){
-  SumarPagos();
-  var total = parseFloat($('#totalSaleMedios').html());
-  var pagos = parseFloat($('#totalPagosMedios').html());
-  var descuento = parseFloat($('#descuento').val() == '' ? 0 : ($('#descuento').val().replace('.','')).replace(',','.'));
-
-  $('#totalSaldoMedios').html(parseFloat(parseFloat(total) - parseFloat(pagos) - parseFloat(descuento)).toFixed(2));
-  if(parseFloat(parseFloat(total - pagos).toFixed(2) - descuento) != 0){
-    $('#btnPago').prop("disabled", true);
-  } else {
-    $('#btnPago').prop("disabled", false);
-  }
-}
-
-$('.calcula').keyup(function() {
-  CalcularMediosDePago();
-});
 /****************************** Fin Cobrar Venta ******************************/
 
   $(function(){
@@ -582,9 +448,9 @@ $('.calcula').keyup(function() {
             dataType: 'json'
         });
     }
+}
 
-  //setTimeout("$('#modalCli').modal('show');",1000);
-  function CargarModalNuevoCliente(dni){
+function CargarModalNuevoCliente(dni){
       LoadIconAction('modalActionCli','Add');
       WaitingOpen('Espere...');
       $.ajax({
@@ -604,7 +470,6 @@ $('.calcula').keyup(function() {
                 },
                 dataType: 'json'
         });
-  }
 }
 
 $('#btnSaveCustomer').click(function(){
@@ -666,145 +531,7 @@ $('#btnSaveCustomer').click(function(){
       });
 });
 
-$('#btnServicePresupuesto').click(function(){
-  Cobrar_(1);
-});
-
-$('#btnPago').click(function(){
-  Cobrar_(0);
-});
-
-$('#btnServiceEfectivo').click(function(){
-  $('#efectivo').val($('#totalSale').html().replace('.',','));
-  Cobrar_(0);
-});
-
-function Cobrar_(esPresupuesto){
-  if($('#venId').val() == 0 || $('#venId').val() == undefined || $('#venId').val() == -1)
-    return false;
-  //Barrer Informacion
-  //Id de la operación
-  var opId = -1;
-  //Lista de Precio y su porcentaje-----------------------
-  var selected = $('#lpId').find('option:selected');
-  var lp = {
-            id:   $('#lpId').val(),
-            por:  parseFloat(selected.data('porcent'))
-          };
-  //Cliente-----------------------------------------------
-  var cli = {
-              id: $('#cliId').val()
-          };
-  //Vendedor----------------------------------------------
-  var ven = {
-              id:  $('#venId').val()
-            };
-  //Detalle de la compra-----------------------------------
-  var table = $('#detailSale > tbody> tr');
-  var detalle = [];
-  table.each(function(r) {
-    var object = {
-      artId:          (this.children[6].textContent == '-' ? '-' : parseInt(this.children[6].textContent)),
-      cant:           parseFloat(this.children[3].textContent),
-      artDescripcion: this.children[2].textContent,
-      artCosto:       parseFloat(this.children[7].textContent),
-      artventa:       parseFloat(this.children[4].textContent),
-      artventaSD:     parseFloat(this.children[9].textContent), //Venta sin descuentos
-      artCode:        this.children[1].textContent,
-      actualizaStock: parseInt(this.children[8].textContent)
-    };
-    detalle.push(object);
-  });
-  //Medios de Pago-----------------------------------------
-  var medios = [];
-  if(esPresupuesto == 0){
-    var med;
-    //Efectivo
-    if($('#efectivo').val() != ''){
-      med = {
-        id: 1,
-        imp: parseFloat(($('#efectivo').val().replace('.','')).replace(',','.'))
-      };
-      medios.push(med);
-    }
-    //Visa
-    if($('#visa').val() != ''){
-      med = {
-        id: 2,
-        imp: parseFloat(($('#visa').val().replace('.','')).replace(',','.'))
-      };
-      medios.push(med);
-    }
-    //MasterCard
-    if($('#mastercard').val() != ''){
-      med = {
-        id: 3,
-        imp: parseFloat(($('#mastercard').val().replace('.','')).replace(',','.'))
-      };
-      medios.push(med);
-    }
-    //Nevada
-    if($('#nevada').val() != ''){
-      med = {
-        id: 4,
-        imp: parseFloat(($('#nevada').val().replace('.','')).replace(',','.'))
-      };
-      medios.push(med);
-    }
-    //Data
-    if($('#data').val() != ''){
-      med = {
-        id: 5,
-        imp: parseFloat(($('#data').val().replace('.','')).replace(',','.'))
-      };
-      medios.push(med);
-    }
-    //CuentaCorriente
-    if($('#cuentacorriente').val() != ''){
-      med = {
-        id: 7,
-        imp: parseFloat(($('#cuentacorriente').val().replace('.','')).replace(',','.'))
-      };
-      medios.push(med);
-    }
-    //CreditoArgentino
-    if($('#creditoargentino').val() != ''){
-      med = {
-        id: 6,
-        imp: parseFloat(($('#creditoargentino').val().replace('.','')).replace(',','.'))
-      };
-      medios.push(med);
-    }
-    //Descuento--------------------------------------------
-    var desc = parseFloat($('#descuento').val() == '' ? 0 : ($('#descuento').val().replace('.','')).replace(',','.'));
-  } else {
-    var desc = 0;
-  }
-
-  WaitingOpen('Guardando venta');
-    $.ajax({
-          type: 'POST',
-          data: {
-                  lpr:      lp,
-                  clie:     cli,
-                  vend:     ven,
-                  medi:     medios,
-                  des:      desc,
-                  det:      detalle,
-                  esPre:    esPresupuesto,
-                  oId:      opId
-                },
-      url: 'index.php/sale/setSaleMinorista',
-      success: function(result){
-                    WaitingClose();
-                    $('#modalMedios').modal('hide');
-                    setTimeout("cargarView('sale', 'minorista', '');",800);
-            },
-      error: function(result){
-            WaitingClose();
-            ProcesarError(result.responseText, 'modalNo');
-          },
-          dataType: 'json'
-      });
-};
+// $('#btnServicePresupuesto').click(function(){
+//   Cobrar_(1);
+// });
 </script>

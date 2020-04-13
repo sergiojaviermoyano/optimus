@@ -26,7 +26,7 @@ class Sales extends CI_Model
 				'oEsVenta'				=> 	$data['esPre'] == 1 ? 0 : 1,
 				'oEsPlanReserva'		=>	0,
 				'oEsMayorista'			=> 	0,
-				'oEstado'				=> 	$data['esPre'] == 1 ? 'AC' : 'FA'
+				'oEstado'				=> 	$data['esPre'] == 1 ? 'AC' : 'CO'
 			);
 			//verificar si hay cajas abiertas
 
@@ -56,7 +56,7 @@ class Sales extends CI_Model
 				}
 			} else {
 				//Es el cobro de un presupuesto
-				if($this->db->update('orden', array('oEstado' => 'FA', 'cajaId' => $venta['cajaId']), array('oId'=>$oId)) == false) {
+				if($this->db->update('orden', array('oEstado' => 'CO', 'cajaId' => $venta['cajaId']), array('oId'=>$oId)) == false) {
 					$this->db->trans_complete();
 					return false;
 				}
@@ -107,9 +107,12 @@ class Sales extends CI_Model
 					foreach ($data['medi'] as $m) {
 						$medio = array(
 							'oId'				=> $oId < 0 ? $idOrden : $oId,
-							'medId'				=> $m['id'],
-							'rcbImporte'		=> $m['imp'],
-							'cajaId'			=> $venta['cajaId']
+							'medId'				=> $this->getIdMedio($m['medioCode']),
+							'rcbImporte'		=> $m['medioImport'],
+							'cajaId'			=> $venta['cajaId'],
+							'rcbDesc1'			=> $m['medioDesc1'],
+							'rcbDesc2'			=> $m['medioDesc2'],
+							'rcbDesc3'			=> $m['medioDesc3']
 						);
 
 						if($this->db->insert('recibos', $medio) == false) {
@@ -117,12 +120,12 @@ class Sales extends CI_Model
 						}
 
 						//Si es cuenta corriente registrar movieminto
-						if($m['id'] == 7){
+						if($m['medioCode'] == 'CCT'){
 							$ctacte = array(
 								'cctepConcepto'			=> 'Venta: '.($oId < 0 ? $idOrden : $oId),
 								'cctepRef'				=>	$oId < 0 ? $idOrden : $oId,
 								'cctepTipo'				=>	'VN',
-								'cctepDebe'				=>	$m['imp'],
+								'cctepDebe'				=>	$m['medioImport'],
 								'cliId'					=> 	$data['clie']['id'],
 								'usrId'					=>	$userdata[0]['usrId'],
 								'cajaId'				=>  $venta['cajaId']
@@ -139,6 +142,20 @@ class Sales extends CI_Model
 
 		$this->db->trans_complete();
 		return $oId < 0 ? $idOrden : $oId;
+	}
+
+	function getIdMedio($code){
+		$this->db->select('*');
+		$this->db->where(array('medCodigo' => $code));
+		$this->db->from('mediosdepago');
+		$query = $this->db->get();
+		$result = $query->result_array();
+		if(count($result) > 0){
+			$result = $query->result_array();
+			return $result[0]['medId'];
+		} else {
+			return false;
+		}
 	}
 
 	function setSaleMayorista($data = null){

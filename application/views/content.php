@@ -12,6 +12,9 @@
 <?php $this->load->view('buscadores/clientes'); ?>
 <?php $this->load->view('sales/print_order_modal'); ?>
 
+<!-- Sirve para cargar la vista de cobros -->
+<?php $this->load->view('boxs/cobroview'); ?>
+
 <!-- Modal -->
 <div class="modal fade" id="modalPrint" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document" style="width: 50%">

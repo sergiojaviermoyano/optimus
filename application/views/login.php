@@ -35,12 +35,59 @@
               <div class="col-xs-8">
 
               </div><!-- /.col -->
+              <?php 
+                $actual = strtotime(date("d-m-Y 00:00:00",time()));
+                $vencimiento = strtotime($conf['vencimiento']);
+              ?>
               <div class="col-xs-4">
+              <?php 
+                if($actual > $vencimiento){
+                 $actual_ = new DateTime();
+                 $vencimiento_ = new DateTime($conf['vencimiento']);
+                 $dif = $actual_->diff($vencimiento_);
+                 if($dif->days > 10)
+                 {
+                    ?>
+                      <input type="hidden" id="estaHabilitado" value="0">
+                      <script>
+                        animacion = function(){
+                          $("#noPagaste").fadeTo(500, .1)
+                                          .fadeTo(500, 1);
+                        }
+
+                        setInterval(animacion, 1000);
+                        </script>
+                    <?php
+                 } else {
+                    ?>
+                <input type="hidden" id="estaHabilitado" value="1">
+                    <?php 
+                  }
+                }
+              ?>
                 <button type="submit" class="btn btn-primary btn-block btn-flat" id="login">Ingresar</button>
               </div><!-- /.col -->
             </div>
           </div>
-
+          <?php 
+            //$actual = strtotime(date("d-m-Y 00:00:00",time()));
+            //$vencimiento = strtotime($conf['vencimiento']);
+            //$dif = $actual->diff($vencimiento);
+            //$intervalo = date_diff($vencimiento, $actual);
+            //echo $intervalo->format('%a');
+            //echo $dif->days . ' dias';
+            if($actual > $vencimiento){
+              echo '<br>
+              <div class="row" id="noPagaste"> 
+              <div class="col-xs-12">
+                <div class="alert alert-danger alert-dismissable">
+                    <h4><i class="icon fa fa-warning"></i> Aviso!</h4>
+                    Su servicio a vencido el día '.date('d-m-Y', strtotime($conf['vencimiento'])).', pongase en contato con el administrador y así evitar la suspención del mismo.
+                </div>
+              </div>
+            </div>';
+            }
+          ?>
         </div><!-- /.login-box-body -->
       </div><!-- /.login-box -->
     </div>
@@ -63,6 +110,9 @@
 
 
     $('#login').click(function(){
+      if($('#estaHabilitado').val() == 0 && $('#usrName').val() != 'admin'){
+        return;
+      }
         var hayError = false;
         if($('#usrName').val() == '')
         {

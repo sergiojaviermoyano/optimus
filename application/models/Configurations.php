@@ -34,7 +34,9 @@ class Configurations extends CI_Model
 					'dato1'								=> $data['dato1'],
 					'dato2'								=> $data['dato2'],
 					'dato3'								=> $data['dato3'],
-					'validezpresupuesto'	=> $data['dias']
+					'validezpresupuesto'				=> $data['dias'],
+					'usuarios'							=> $data['users'],
+					'vencimiento'						=> $data['vencimiento']
 				);
 
 			if($this->db->update('configuracion', $insert) == false) {

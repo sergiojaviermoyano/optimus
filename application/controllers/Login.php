@@ -6,6 +6,7 @@ class login extends CI_Controller {
         {
 		parent::__construct();
 		$this->load->model('Users');
+		$this->load->model('Configurations');
 	}
 
 	public function index()
@@ -15,8 +16,9 @@ class login extends CI_Controller {
         $this->session->unset_userdata(null);
         $this->session->sess_destroy();
 
+		$data = $this->Configurations->get_();
 		$this->load->view('header');
-		$this->load->view('login');
+		$this->load->view('login', $data);
 		$this->load->view('footer');
 	}
 

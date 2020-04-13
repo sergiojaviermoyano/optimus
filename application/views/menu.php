@@ -78,6 +78,7 @@
             url: '<?php echo base_url(); ?>index.php/'+controller+'/'+metodh+'/'+actions,
             success: function(result){
                           WaitingClose();
+                          $("#content").empty();
                           $("#content").html(result);
                   },
             error: function(result){

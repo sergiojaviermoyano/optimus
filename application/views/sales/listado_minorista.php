@@ -93,6 +93,10 @@
                             col4='<small class="label pull-left bg-blue">Facturado</small>';
                             break;
                         }
+                        case 'CO':{
+                            col4='<small class="label pull-left bg-blue">Cobrado</small>';
+                            break;
+                        }
                         default:{
                             col4='';
                             break;
@@ -120,7 +124,7 @@
     });
   });
 
-  function cobrar(id){
-    cargarView('sale','minoristaGet',id);
-  }
+  // function cobrar(id){
+  //   cargarView('sale','minoristaGet',id);
+  // }
 </script>

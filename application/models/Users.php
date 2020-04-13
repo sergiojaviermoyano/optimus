@@ -10,7 +10,7 @@ class Users extends CI_Model
 	
 	function User_List(){
 
-		$query= $this->db->get('sisusers');
+		$query= $this->db->get_where('sisusers',array('usrEsAdmin' => 0));
 		
 		if ($query->num_rows()!=0)
 		{
@@ -121,6 +121,26 @@ class Users extends CI_Model
 			switch($act){
 				case 'Add':
 					//Agregar Usuario 
+					//Ver si no tiene el limite de usuarios
+					$query= $this->db->get('configuracion');
+					if ($query->num_rows() != 0)
+					{
+						$u = $query->result_array();
+						$users = $u[0]['usuarios'];
+						//var_dump((int)$users);
+					}
+
+					$query= $this->db->get_where('sisusers',array('usrEsAdmin'=>0));
+					if ($query->num_rows() != 0)
+					{
+						$usersCreados = $query->num_rows();
+						//var_dump($usersCreados);
+					}
+
+					if($users <= $usersCreados){
+						return true;
+					}
+
 					if($this->db->insert('sisusers', $data) == false) {
 						return false;
 					}else{
