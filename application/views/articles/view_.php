@@ -71,8 +71,12 @@
     <div class="form-group">
 			<!--<label class="col-sm-4" style="display:none;"> Cotización Dolar</label>-->
       <label class="col-sm-4"> Precio Venta:  </label>
-      <label class="col-sm-4"> $ <strong id="pventaMinorista" style="color: green; font-size: 20px;">0.00</strong> </label>
+      <!-- <label class="col-sm-4"> $ <strong id="pventaMinorista" style="color: green; font-size: 20px;">0.00</strong> </label> -->
 			<!--<label class="col-sm-4" style="display:none;"> Precio Venta Mayorista:  </label>-->
+      <label class="col-sm-1"> $</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="pventaMinorista" value="" style="color: green; font-size: 20px; font-weight: bold;">
+      </div>
     </div>
 
 		<div class="form-group" style="display:none;">
@@ -156,6 +160,27 @@ $('#artCoste').keyup(function(){
 $('#artCosteIsDolar').click(function() {
   CalcularPrecio();
 });
+$('#pventaMinorista').keyup(function(){
+  CalcularMargen();
+});
+
+function CalcularMargen(){
+  var precioCosto         = $('#artCoste').val() == '' ? 0 : parseFloat($('#artCoste').val()).toFixed(2);
+  var margenMi      			= $('#artMarginMinorista').val() == '' ? 0 : parseFloat($('#artMarginMinorista').val()).toFixed(2);
+  var margenMiEsPor 			= $('#artMarginMinoristaIsPorcent').is(':checked');
+  var precioVenta         = $('#pventaMinorista').val();
+
+  if(precioCosto == 0){
+    $('#artCoste').val(precioVenta);
+  } else {
+    var margen = 0;
+    margen = precioVenta - precioCosto;
+    if(margenMiEsPor){
+      margen = (margen * 100) /  precioCosto;
+    }
+    $('#artMarginMinorista').val(margen.toFixed(2));
+  }
+}
 
 
 function CalcularPrecio(){
@@ -192,7 +217,7 @@ function CalcularPrecio(){
     pventaMayorista = parseFloat(parseFloat(precioCosto) + parseFloat(margenMa)).toFixed(2);
   }
 
-	$('#pventaMinorista').html(pventaMinorista);
+	$('#pventaMinorista').val(pventaMinorista);
   $('#pventaMayorista').html(pventaMayorista);
 }
 

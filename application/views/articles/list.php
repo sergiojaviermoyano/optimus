@@ -132,6 +132,7 @@
                       $("#artMarginMayorista").maskMoney({allowNegative: false, thousands:'', decimal:'.'});
                       $("#artMarginMinorista").maskMoney({allowNegative: false, thousands:'', decimal:'.'});
                       $("#cotizacionDolar").maskMoney({allowNegative: false, thousands:'', decimal:'.'});
+                      $("#pventaMinorista").maskMoney({allowNegative: false, thousands:'', decimal:'.'});
                       CalcularPrecio();
 			                setTimeout("$('#modalArticle').modal('show')",800);
                       //$("[data-mask]").inputmask();

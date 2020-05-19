@@ -519,6 +519,7 @@ $(document).on('keyup','.descuento',function(event){
 $('#btnSaveCobroModal').click(function(){
   debugger;
   Cobrar_(0);
+  $('#btnSaveCobroModal').attr('disabled', 'disabled');
 });
 
 // $('#btnServiceEfectivo').click(function(){
@@ -527,8 +528,10 @@ $('#btnSaveCobroModal').click(function(){
 // });
 
 function Cobrar_(esPresupuesto){
-  if($('#venId').val() == 0 || $('#venId').val() == undefined || $('#venId').val() == -1)
+  if($('#venId').val() == 0 || $('#venId').val() == undefined || $('#venId').val() == -1){
+    $('#btnSaveCobroModal').removeAttr("disabled");
     return false;
+  }
   //Barrer Informacion
   //Id de la operación
   var opId = -1;
@@ -589,10 +592,12 @@ function Cobrar_(esPresupuesto){
       success: function(result){
                     WaitingClose();
                     $('#modalCobro').modal('hide');
+                    $('#btnSaveCobroModal').removeAttr("disabled");
                     setTimeout("cargarView('sale', 'minorista', '');",300);
             },
       error: function(result){
             WaitingClose();
+            $('#btnSaveCobroModal').removeAttr("disabled");
             ProcesarError(result.responseText, 'modalCobro');
           },
           dataType: 'json'

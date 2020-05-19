@@ -17,6 +17,7 @@
           <table id="sales_minoristas" class="table table-bordered table-hover">
             <thead>
               <tr>
+                <th class="text-center" width="10px;">-</th>
                 <th class="text-center">Acciones</th>
                 <th>Nº Orden</th>
                 <th>Fecha</th>
@@ -59,6 +60,7 @@
         },
         'columns':[
             {className:'text-center'},
+            {className:'text-center'},
             null,
             null,
             null,
@@ -74,8 +76,20 @@
                 var output = [];
                 var permission = $("#permission").val();
                 $.each(response.data,function(index,item){
-                    var col1,col2,col3,col4, col5='';
-                    col1='';
+                    var col0,col1,col2,col3,col4, col5='';
+                    col0='';
+                    if(item.oEstado == 'CO' && item.oEstado != 'FA'){
+                      if(permission.indexOf("Fac")>0 ){
+                        col0 += '<small class="label bg-blue" style="cursor: pointer;" title="Facturar" onClick="facturar('+item.oId+')">AFIP</small>';
+                      }
+                    }
+                    col1=''; 
+                    if(item.oEstado == 'CO' && item.oEstado != 'FA'){
+                      if(permission.indexOf("Fac")>0 ){
+                        col1+='<i class="fa fa-fw fa-dollar text-green" style="cursor: pointer;" title="Facturar" onClick="Cobrar_('+item.oId+')"></i>';
+                      }
+                    }
+                    
                    // col1+='<i class="fa fa-fw fa-print" style="color: #A4A4A4; cursor: pointer; margin-left: 15px;" onclick="Print('+item.ocId+')"></i>';
                     col1+='<i class="fa fa-fw fa-print" style="color: #A4A4A4; cursor: pointer; margin-left: 15px;" data-id="'+item.oId+'"></i>';
                     col2=item.oId;
@@ -108,7 +122,7 @@
                     } else {
                         col5= (item.oEsPresupuesto==1)?'<small class="label pull-left bg-navy" style="font-size:14px; margin-right:5px;">P</small>':' ';
                     }
-                    output.push([col1,col2,col3,col4,col5]);
+                    output.push([col0,col1,col2,col3,col4,col5]);
                 });
                 return output;
             },
@@ -117,7 +131,7 @@
             }
         },
         "createdRow": function ( row, data, index ) {
-            if(data[4].search("small")>0){
+            if(data[5].search("small")>0){
               $(row).addClass('info');
             }
         }
@@ -128,3 +142,4 @@
   //   cargarView('sale','minoristaGet',id);
   // }
 </script>
+<script src="<?php  echo base_url();?>assets/js/afip.js"></script>

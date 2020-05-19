@@ -9,6 +9,7 @@
             <?php
 
                foreach ($menu as $m) {
+                 //var_dump($m);
                   if(count($m['childrens']) > 0) {
                     echo '<li class="treeview">
                             <a href="#">
@@ -41,6 +42,7 @@
                     echo '<li class="treeview" onClick="activa(this)">
                             <a href="#" onClick="cargarView(\''.$m['menuController'].'\',\''.$m['menuView'].'\', \''.$actions.'\')">
                               <i class="'.$m['menuIcon'].'"></i> <span>'.str_replace("_", " ", $m['menuName']).'</span>
+                              '.MostrarIcono($m['menuCreated'], $m['menuUpdate']).'
                             </a>
                           </li>';
                   }
@@ -65,7 +67,30 @@
           </a>
         </li>
     </aside>
-
+<?php 
+function MostrarIcono($creado, $modificado){
+  $actual_ = new DateTime();
+  if($creado != null){
+    $vencimiento_ = new DateTime($creado);
+    $dif = $actual_->diff($vencimiento_);
+    if($dif->days <= 7){
+      return '<span class="pull-right-container">
+            <small class="label pull-right bg-green">nuevo</small>
+          </span>';
+    }
+  }
+  if($modificado != null){
+    $vencimiento_ = new DateTime($modificado);
+    $dif = $actual_->diff($vencimiento_);
+    if($dif->days <= 7){
+      return '<span class="pull-right-container">
+            <small class="label pull-right bg-orange" title="Actualizado" style="padding: 3px;"><i class="fa fa-fw fa-bell-o" ></i> </small>
+          </span>';
+    }
+  }
+  
+}
+?>
       <script>
       function cargarView(controller, metodh, actions)
       {
